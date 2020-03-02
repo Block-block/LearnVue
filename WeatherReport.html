@@ -1,0 +1,77 @@
+<div class="card" id="app">
+
+	<h1>天气预报</h1>
+	<br>
+	<h2>今天天气</h2>
+	<h3>{{ weather.forecast[0].date }}:</h3>
+	<h3>{{ weather.forecast[0].high }}</h3>
+	<h3>{{ weather.forecast[0].low }}</h3>
+	<h3>天气：{{ weather.forecast[0].type }}</h3>
+	<h3>风向：{{ weather.forecast[0].fengxiang }}</h3>
+	<h3>风速：{{ weather.forecast[0].fengli }}</h>
+		<hr>
+		<h2>未来四天：</h2>
+		<h3>{{ weather.forecast[1].date }}:</h3>
+		<h3>{{ weather.forecast[1].high }}</h3>
+		<h3>{{ weather.forecast[1].low }}</h3>
+		<h3>天气：{{ weather.forecast[1].type }}</h3>
+		<h3>风向：{{ weather.forecast[1].fengxiang }}</h3>
+		<h3>风速：{{ weather.forecast[1].fengli }}</h3>
+		<br>
+		<br>
+		<h3>{{ weather.forecast[2].date }}:</h3>
+		<h3>{{ weather.forecast[2].high }}</h3>
+		<h3>{{ weather.forecast[2].low }}</h3>
+		<h3>天气：{{ weather.forecast[2].type }}</h3>
+		<h3>风向：{{ weather.forecast[2].fengxiang }}</h3>
+		<h3>风速：{{ weather.forecast[2].fengli }}</h3>
+		<br>
+		<br>
+		<h3>{{ weather.forecast[3].date }}:</h3>
+		<h3>{{ weather.forecast[3].high }}</h3>
+		<h3>{{ weather.forecast[3].low }}</h3>
+		<h3>天气：{{ weather.forecast[1].type }}</h3>
+		<h3>风向：{{ weather.forecast[3].fengxiang }}</h3>
+		<h3>风速：{{ weather.forecast[3].fengli }}</h3>
+		<br>
+		<br>
+		<h3>{{ weather.forecast[4].date }}:</h3>
+		<h3>{{ weather.forecast[4].high }}</h3>
+		<h3>{{ weather.forecast[4].low }}</h3>
+		<h3>天气：{{ weather.forecast[4].type }}</h3>
+		<h3>风向：{{ weather.forecast[4].fengxiang }}</h3>
+		<h3>风速：{{ weather.forecast[4].fengli }}</h3>
+		<br>
+		<br>
+		<hr>
+		<h2>昨天天气</h2>
+		<h3>{{ weather.yesterday.date }}</h3>>
+		<h3>{{ weather.yesterday.high }}</h3>
+		<h3>{{ weather.yesterday.low }}</h3>
+		<h3>天气：{{ weather.yesterday.type }}</h3>
+		<h3>风速：{{ weather.yesterday.fx }}</h3>
+		<h3>风向：{{ weather.yesterday.fl }}</h3>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+	const app = new Vue({
+		el: '#app',
+		data: {
+			weather: []
+		},
+		created() {
+			fetch('http://wthrcdn.etouch.cn/weather_mini?city=临沂')
+				.then(response => response.json())
+				.then(json => {
+					this.weather = json.data
+				})
+		}
+	})
+</script>
+
+<style>
+	.card{
+		background-image: url(background3.jpg);
+	}
+</style>
