@@ -1,0 +1,48 @@
+
+<div id="app">
+    <ul>
+        <li v-for = 'product in products'>
+                <input type="number" v-model.number = "product.quantity">
+                    {{ product.name }}
+                {{ product.quantity }} {{ product.name }} 
+                <span v-if="product.quantity === 0">
+                    - OUT OF STOCK
+                </span>
+                <button @click = "product.quantity += 1">
+                    Add
+                </button>
+        </li>
+     </ul> 
+     <h2>Total Inventory:{{totalProducts}}</h2>  
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</script>
+<script>
+    const app = new Vue({
+        el:'#app',
+        data:{
+            products:[]
+        },
+        computed:{
+            totalProducts () {
+                return this.products.reduce((sum,product) => {
+                    return sum + product.quantity      
+                },0)
+            }
+            
+        },
+        created () {
+			this.mui.post('',{
+					
+				},function(data){
+					
+				},'json'
+			);
+            fetch('https://api.myjson.com/bins/74l63')
+                .then(response => response.json())
+                .then(json =>{
+                    this.products = json.products
+                })           
+        }
+    })
+</script>
